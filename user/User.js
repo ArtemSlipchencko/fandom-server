@@ -5,7 +5,8 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
 
   password: {
@@ -13,13 +14,17 @@ const userSchema = new Schema({
     required: true
   },
 
+  subcription: {
+    type: String,
+    default: 'common'
+  },
+
   token: {
     type: String,
   },
 
-  subcription: {
-      type: String,
-      default: 'common'
+  verificationToken: {
+    type: String,
   }
 });
 
