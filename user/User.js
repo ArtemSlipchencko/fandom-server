@@ -14,7 +14,7 @@ const userSchema = new Schema({
     required: true
   },
 
-  subcription: {
+  subscription: {
     type: String,
     default: 'common'
   },
