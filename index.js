@@ -8,7 +8,7 @@ dotenv.config();
 const userRoutes = require("./user/user.routes");
 const articleRoutes = require("./article/article.routes");
 
-const PORT = process.env.port || 8080;
+const PORT = process.env.PORT || 8080;
 
 class Server {
   constructor() {
