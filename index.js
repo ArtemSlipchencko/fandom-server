@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const userRoutes = require("./user/user.routes");
+const articleRoutes = require("./article/article.routes");
 
 const PORT = process.env.port || 8080;
 
@@ -33,6 +34,7 @@ class Server {
 
   initRoutes() {
     this.server.use("/fandom", userRoutes);
+    this.server.use("/article", articleRoutes);
   }
 
   async connectToDb() {

@@ -40,7 +40,7 @@ class UserController {
         verificationToken: `${verificationToken}`,
       });
 
-      res.status(201);
+      res.status(201).send(`${user.name}'s account created`);
     } catch (error) {
       res.status(400).send(error);
     }
