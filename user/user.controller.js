@@ -9,12 +9,6 @@ dotenv.config();
 const User = require("./User");
 
 class UserController {
-  async getUsers(req, res) {
-    const users = await User.find();
-    console.log(users);
-    res.json(users);
-  }
-
   async registerValidation(req, res, next) {
     const validationRules = Joi.object({
       name: Joi.string().required(),
@@ -46,7 +40,7 @@ class UserController {
         verificationToken: `${verificationToken}`,
       });
 
-      res.status(201).json(user);
+      res.status(201).send(`${user.name}'s account created`);
     } catch (error) {
       res.status(400).send(error);
     }
@@ -73,6 +67,8 @@ class UserController {
     );
 
     user.token = token;
+
+    console.log(user.subscription);
 
     const userLogged = await User.findByIdAndUpdate(user._id, user, {
       new: true,
@@ -122,6 +118,17 @@ class UserController {
     } catch (error) {
       res.status(401).send("Not authorized");
     }
+  }
+
+  async currentUser(req, res) {
+    const { name, subscription } = req.user;
+
+    res
+      .json({
+        name,
+        subscription,
+      })
+      .status(200);
   }
 }
 
